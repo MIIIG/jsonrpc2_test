@@ -1,0 +1,4 @@
+go.neonxp.dev/jsonrpc2 v1.1.3 h1:S3CyLlIUuddOLgqZa0P5oE0O2oAtcwSc+SLRdo84B0U=
+go.neonxp.dev/jsonrpc2 v1.1.3/go.mod h1:xGiFcKIvOdoizfAnATCgJTyJRvLbQx9DDMd6w+7F2o0=
+golang.org/x/sync v0.0.0-20220513210516-0976fa681c29 h1:w8s32wxx3sY+OjLlv9qltkLU5yvJzxjjgiHWLjdIcw4=
+golang.org/x/sync v0.0.0-20220513210516-0976fa681c29/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
