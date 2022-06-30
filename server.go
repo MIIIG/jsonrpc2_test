@@ -10,14 +10,19 @@ import (
 )
 
 type Result struct {
-	id     string
-	result string
+	id      string  `json:"id"`
+	jsonrpc float32 `json:"jsonrpc"`
+	result  string  `json:"result"`
 }
 type Request struct {
-	id      string
-	jsonrpc string
-	method  string
-	params  []string
+	id      string  `json:"id"`
+	jsonrpc float32 `json:"jsonrpc"`
+	method  string  `json:"method"`
+	params  Params  `json:"params`
+}
+
+type Params struct {
+	name string `"json:"name"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -27,7 +32,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("header: %s /\n", r.Header)
 	fmt.Printf("body: %s /\n", r.Body)
 	switch r.Method {
-	case "Get":
+	case "GET":
 		w.WriteHeader(200)
 	case "POST":
 		reqbody, err := ioutil.ReadAll(r.Body)
@@ -35,12 +40,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("server: could not read request body: %s\n", err)
 		}
 		fmt.Printf("request body: %s\n", reqbody)
-		dec := json.NewDecoder(r.Body).Decode(&req)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
+		jbody := json.Unmarshal(reqbody, req)
+		if jbody != nil {
+			panic(jbody)
 		}
-		fmt.Fprintf(w, "Request: %+v\n", dec)
+		fmt.Println(req)
+		// body := json.NewDecoder(r.Body)
+		// if err != nil {
+		// 	fmt.Sprintf("Bad mashalling: %s", err)
+		// }
+		// fmt.Printf("Marshalling request: %s", request)
+		// err := json.NewDecoder(r.Body).Decode(&req)
+		// dec := json.NewDecoder(r.Body)
+		// if err != nil {
+		// 	http.Error(w, err.Error(), http.StatusBadRequest)
+		// 	return
+		// }
+		// fmt.Printf("Request: %s\n", dec)
 
 		fmt.Printf("its Show time\n")
 		io.WriteString(w, "This is RPC server!\n")
