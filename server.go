@@ -10,19 +10,19 @@ import (
 )
 
 type Result struct {
-	id      string  `json:"id"`
-	jsonrpc float32 `json:"jsonrpc"`
-	result  string  `json:"result"`
+	Id      string `json:"id"`
+	Jsonrpc string `json:"jsonrpc"`
+	Result  string `json:"result"`
 }
 type Request struct {
-	id      string  `json:"id"`
-	jsonrpc float32 `json:"jsonrpc"`
-	method  string  `json:"method"`
-	params  Params  `json:"params`
+	Id      string `json:"id"`
+	Jsonrpc string `json:"jsonrpc"`
+	Method  string `json:"method"`
+	Params  Params `json:"params"`
 }
 
 type Params struct {
-	name string `"json:"name"`
+	Name string `json:"name"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +40,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("server: could not read request body: %s\n", err)
 		}
 		fmt.Printf("request body: %s\n", reqbody)
-		jbody := json.Unmarshal(reqbody, req)
+		jbody := json.Unmarshal(reqbody, &req)
 		if jbody != nil {
 			panic(jbody)
 		}
