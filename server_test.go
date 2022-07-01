@@ -8,17 +8,3 @@ func TestHandler(t *testing.T) {
 		t.Errorf("expected %s; got: %s", expectedHandlerResult, &actualHandlerResult)
 	}
 }
-
-// // файл foo_test.go
-// package foo
-
-// import (
-//     "testing"
-// )
-
-// func TestFooFunc(t *testing.T) {
-//     expectedFooResult := "bar"
-//     if actualFooResult := Foo(); actualFooResult != expectedFooResult {
-//         t.Errorf("expected %s; got: %s", expectedFooResult, actualFooResult)
-//     }
-// }

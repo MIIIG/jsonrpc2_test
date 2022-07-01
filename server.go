@@ -68,6 +68,7 @@ func Greeting(request Request, w http.ResponseWriter) {
 	w.Write(js)
 }
 
+// Start server and handle /
 func main() {
 	http.HandleFunc("/", Handler)
 	err := http.ListenAndServe(":8000", nil)
